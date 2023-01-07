@@ -1,3 +1,9 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+/* Below is CSS for Nav and Intro Screen */
 .nav-link,
 .navbar-brand {
     color: white;
@@ -30,7 +36,6 @@
     position: relative;
 }
 
-
 .hero-title {
     font-size: 4rem;
 }
@@ -56,21 +61,121 @@
     top: 0;
     background: rgba(0, 0, 0, 0.6);
 }
+/* End CSS for Nav and Intro Screen */
+
+
+/* Below is the CSS for the progress bars*/
+.skill-container {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 450px;
+    background-color: #fdfdfd;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 50px;
+}
+
+.progressbar, .progress {
+    height: 10px;
+    border-radius: 10px;
+}
+
+.progressbar {
+    margin-bottom: 60px;
+    position: relative;
+    top: 50px;
+    width: 100%;
+    background-color: lightgrey;
+}
+
+.progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: royalblue;
+}
+
+.progress.active {
+    animation: 2s cubic-bezier(0.4,-0.02, 0, 0.92) startProgress;
+}
+
+.progress.html {
+    width: 90%;
+    
+}
+
+.progress.css {
+    width: 88%;
+    animation-delay: 0.1s;
+}
+
+.progress.java {
+    width: 80%;
+    animation-delay: 0.2s;
+}
+
+.progress.cpp {
+    width: 70%;
+    animation-delay: 0.3s;
+}
+
+.progress.javascript {
+    width: 60%;
+    animation-delay: 0.4s;
+}
+.progress.python {
+    width: 50%;
+    animation-delay: 0.5s;
+}
+
+@keyframes startProgress {
+    from {
+        width: 0%;
+    }
+}
+
+.skill {
+    position: relative;
+    bottom: 25px;
+    font-weight: bold;
+}
+
+/* End of CSS for progress bars*/
 
 #about {
-    height: 500px;
+    background-color: #f1f1f1;
+    padding-bottom: 20px;
 }
 
 #projects {
+    background-color: white;
+    margin-top: 20px;
+    padding-bottom: 20px;
     height: 500px;
 }
 
 #contact {
-    height: 500px;
+    background-color: #f1f1f1;
+    padding-top: 20px;
+    height: 300px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.intro {
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .education {
-    margin-top: 5rem;
-    margin-bottom: 10rem;
+    position: relative;
+    top: 5px;
+    width: 600px;
 }
-

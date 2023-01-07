@@ -12,31 +12,33 @@
 
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/index.html#home">William</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
+            <a class="navbar-brand" href="/index.html#home">William</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/index.html#home">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html#about">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html#projects">Projects</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html#contact">Contact</a>
-              </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/index.html#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.html#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.html#projects">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.html#contact">Contact</a>
+                </li>
             </ul>
-          </div>
+            </div>
         </div>
-      </nav>
+    </nav>
 
-      <!--Info Section-->
-      <section class="bgimg" id="home">
+    <main>
+
+        <!--Intro Section-->
+        <section class="bgimg" id="home">
         <div class="overlay"></div>
         <div class="container-fluid">
             <div class="hero-text">
@@ -44,43 +46,90 @@
                 <p class="hero-desc">I am a computer science student at UBC</p>
             </div>
         </div>
-      </section>
-
+        </section>
+      
       <!--About Section-->
-      <section id="about">
-        <div class="container mt-4">
-            <h1 class="text-center mb-5">About</h1>
-            <div class="row">
-                <div class="col-md-6 info">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. At sequi asperiores, illum doloribus consequuntur suscipit voluptates accusamus deleniti, reprehenderit iusto voluptatem ex dicta dolorem omnis aliquid? Enim totam adipisci ab.
+        <section id="about">
+            <div class="container mt-4">
+                <h1 class="text-center mb-5">About</h1>
+                <div class="row">
+                    
+                    <div class="col-md-6 info">
+                        <span class="intro">
+                            Hello, my name is William Chow. I am currently a student, thus I do not have much experience although I am open to
+                            explore the different paths computer science has to offer to figure out what I enjoy.
+                        </span>
+                        <div class="row">
+                
+                            <div class="col-md-6 mt-4 education">
+                                <h3 class="text-center">Education</h3>
+                                <p class="text-center mt-3">
+                                    University of British Columbia <br> 
+                                    Bachelor of Science: Computer Science
+                                </p>
+                            </div>
+                        </div>
                 </div>
+
                 <div class="col-md-6 skills">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates tempora quibusdam et optio enim non unde quaerat est cum reprehenderit quis nobis eius quia, quos maiores porro asperiores architecto in!
+                    <h3 class="text-center">Skills</h3>
+                    <div class="container-fluid skill-container">
+                        <div class="progressbar">
+                            <span class="skill">HTML</span>
+                            <div class="progress html active"></div>
+                        </div>
+                
+                        <div class="progressbar">
+                            <span class="skill">CSS</span>
+                            <div class="progress css active"></div>
+                        </div>
+                
+                        <div class="progressbar">
+                            <span class="skill">Java</span>
+                            <div class="progress java active"></div>
+                        
+                        <div class="progressbar">
+                            <span class="skill">C++</span>
+                            <div class="progress cpp active"></div>
+                        </div>
+                        
+                        <div class="progressbar">
+                            <span class="skill">Javascript</span>
+                            <div class="progress javascript active"></div>
+                        </div>
+                
+                        <div class="progressbar">
+                            <span class="skill">Python</span>
+                            <div class="progress python active"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+        </section>
+
+        <!--Projects Section-->
+        <section id="projects">
+            <div class="container">
+                <h1 class="text-center">Projects</h1>
             <div class="row">
-                <div class="col-md-6 education">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore voluptatem voluptatum cumque. Ratione debitis earum enim quidem ducimus esse laudantium, eos praesentium animi accusamus labore sapiente voluptates vel quasi corrupti?
+                <div class="col-md-12 text-center">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit perspiciatis totam rem culpa ea aliquid fugiat esse tenetur, facilis dolor maiores repellat sunt cupiditate debitis corporis ad delectus pariatur veritatis?
                 </div>
             </div>
-        </div>
-      </section>
+        </section>
 
-      <!--Projects Section-->
-      <section id="projects">
-        <h1 class="text-center">Projects</h1>
-        <div class="row projects">
-            <div class="col-md-12 text-center">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit perspiciatis totam rem culpa ea aliquid fugiat esse tenetur, facilis dolor maiores repellat sunt cupiditate debitis corporis ad delectus pariatur veritatis?
+        <!--Contact Section-->
+        <section id="contact">
+            <div class="container">
+                <h1 class="text-center">Contact</h1>
+                <div class="col-md-12">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente provident ratione nam. Vel beatae sunt tempore perferendis quibusdam, tenetur magnam sit ea est corporis omnis itaque non quia molestiae libero.
+                </div>
             </div>
-        </div>
-    </section>
-
-    <!--Contact Section-->
-    <section id="contact">
-        <h1 class="text-center">Contact</h1>
-
-    </section>
+        </section>
+    
+    </main>
     
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
