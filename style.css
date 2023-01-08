@@ -186,6 +186,10 @@ main {
     padding-bottom: 20px;
 }
 
+.education-info {
+    font-weight: bold;
+}
+
 .skills {
     margin-top: 20px;
 }
@@ -214,4 +218,20 @@ main {
 
 .reveal-about:nth-child(2) {
     transition-delay: 300ms;
+}
+
+.text-bar {
+    display: inline-block;
+    width: 5px;
+    height: 50px;
+    background-color: white;
+
+}
+
+.showBar {
+    opacity: 1;
+}
+
+.hideBar {
+    opacity: 0;
 }
