@@ -63,15 +63,6 @@ function animateProgressBar() {
 }
 // ===========================================================================
 // Adding text animation to intro screen
-const myIntro = "i'm William";
-let curLetter = 0;
-
-setInterval(() => {
-    if (curLetter <= myIntro.length)
-    text.textContent = myIntro.substring(0, curLetter);
-    curLetter++;
-}, 120);
-// ===========================================================================
 textAnimation("I'm William");
 
 function textAnimation(text) {
@@ -86,7 +77,7 @@ function textAnimation(text) {
         if (length === 0) {
             setTimeout(() => {
                 dir = 1;
-            }, 400);
+            }, 500);
         } else if (length === text.length) {
             setTimeout(() => {
                 dir = -1;
@@ -94,7 +85,7 @@ function textAnimation(text) {
         }
         textEffect.textContent = text.substring(0, length);
         length += dir;
-    }, 200);
+    }, 150);
 
     setInterval(() => {
         if (visible) {
