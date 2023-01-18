@@ -152,6 +152,7 @@ body {
 }
 
 #projects {
+    height: 100vh;
     background-color: white;
     margin-top: 20px;
     padding-bottom: 20px;
@@ -236,6 +237,35 @@ main {
 }
 /* CSS for Projects Section */
 
+.project-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: black;
+    overflow: hidden;
+}
+
+.card-img {
+    height: 100%;
+}
+
+.card-desc {
+    width: 100%;
+    position: absolute;
+    background-color: #252525;
+    color: white;
+    opacity: 0.9;
+    top: 48%;
+    transform: translateY(70%);
+    transition: 0.3s;
+}
+
+.card-desc:hover {
+    transform: translateY(0%);
+}
+
 
 
 /* CSS for Contact Section */
@@ -256,10 +286,11 @@ main {
     color: white;
     margin-left: 15px;
     margin-right: 15px;
+    transition: all 0.2s linear;
 }
 
 .contact-btn:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px);
 }
 
 a {
