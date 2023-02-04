@@ -124,8 +124,9 @@ body {
     width: 69%;
     /* animation-delay: 1s; */
 }
+
 .progress.python.active {
-    width: 60%;
+    width: 68%;
     /* animation-delay: 1s; */
 }
 
