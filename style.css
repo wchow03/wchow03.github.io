@@ -260,6 +260,7 @@ main {
     top: 48%;
     transform: translateY(70%);
     transition: 0.3s;
+    height: 170px;
 }
 
 .card-desc:hover {
