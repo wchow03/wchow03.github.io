@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    width: 310px;
+    background-color: bisque;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    border: 2px solid;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    font-family: monospace;
+}
+
+.winner {
+    position: absolute;
+    top: 20%;
+    left: 34%;
+    font-size: 100px;
+    font-family: monospace;
+}
+
+span {
+    position: absolute;
+    left: 20%;
+    top: -40%;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+
