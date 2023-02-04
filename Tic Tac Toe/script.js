@@ -1,5 +1,6 @@
 const cells = document.querySelectorAll(".cell");
 const mainText = document.querySelector(".main-text");
+const restartBtn = document.querySelector(".restartBtn");
 const winningConditions = [
     [0,1,2],
     [3,4,5],
@@ -11,10 +12,10 @@ const winningConditions = [
 
 let curBoard = ["", "", "", "", "", "", "", "", ""];
 let turn = "X";
-let i = 0;
 let gameFinished = false;
 
 init();
+restartBtn.addEventListener("click", clearBoard);
 
 function init() {
     cells.forEach(cell => cell.addEventListener("click", cellClicked));
@@ -79,6 +80,16 @@ function checkWinner() {
 
 function removeListeners() {
     cells.forEach(cell => cell.removeEventListener("click"));
+}
+
+function clearBoard() {
+    cells.forEach(cell => cell.textContent = "");
+    for (let i = 0; i < 9; i++) {
+        curBoard[i] = "";
+    }
+    gameFinished = false;
+    mainText.textContent = "New Game";
+    init();
 }
 
 
