@@ -63,7 +63,7 @@ function numberCells(rows, cols) {
     // CASE 4: square on last col
     // CASE 5: square anywhere but edges
     // First two cases check for corner boundaries
-    numberCellsFirstCol(rows)
+    numberCellsFirstCol(rows);
     numberCellsLastCol(cols, rows);
     numberCellsFirstRow(cols);
     numberCellsLastRow(cols, rows);
@@ -187,6 +187,8 @@ export function revealCell(cell) {
             cell.square.querySelector("img").style.display = "block";
             cell.covered = false;
             revealNeighbors(cell);
+        } else if (cell.covered == false) {
+            checkFlagged(cell);
         } else {
             cell.square.querySelector("img").style.display = "block";
             cell.covered = false;
@@ -206,12 +208,7 @@ function revealNeighbors(cell, cols, rows) {
 
     // Recursion:
         // Base cases:
-            // If all cells adjacent to it do not have status 0 and the empty cell that is adjacent to it has
-            // covered == false
-            // If cell.y - 1 < 0 then stop
-            // If cell.x - 1 < 0 then stop
-            // If cell.x + 1 > cols then stop
-            // If cell.y + 1 > rows then stop
+            // If cell adjacent does not have status 0 and the cell is covered then stop
         // Check to see if any adjacent cells have a status of 0 and covered == true
             // If they do, then call revealNeighbors with that adjacent cell
             // Otherwise reveal the adjacent cell
@@ -232,6 +229,41 @@ function revealNeighbors(cell, cols, rows) {
             }
         }
     }
+}
+
+function checkFlagged(cell) {
+    let xPos = cell.x;
+    let yPos = cell.y;
+    let curStatus = cell.status;
+    let minesFlagged = 0;
+    let neighbors = [];
+
+    for (let y = -1; y <= 1; y++) {
+        for (let x = -1; x <= 1; x++) {
+            let curCell = board[yPos + y]?.[xPos + x];
+            if (curCell?.flagged == true && curCell.mine == true && curCell.covered == true) {
+                minesFlagged++;
+            } else {
+                neighbors.push(curCell);
+            }
+        }
+    }
+
+    if (curStatus == minesFlagged) {
+        cell.covered = false;
+        neighbors.forEach(cell => {
+            if (cell) {
+                if (cell.status == 0) {
+                    cell.covered = false;
+                    revealNeighbors(cell);
+                } else {
+                    cell.square.querySelector("img").style.display = "block";
+                    cell.covered = false;
+                }
+            }
+        });
+    }
+
 }
 
 // ============================================================================================
