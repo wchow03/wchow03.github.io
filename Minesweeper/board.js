@@ -9,9 +9,11 @@ import {labelCell} from "./cell.js";
 
 // rows represents y
 // cols represents x
+let gameOver = false;
+let board = []; // Contains a 2D array of cells
+let mines = []; // Array of bomb positions in (x,y) coordinates
 
-const board = []; // Contains a 2D array of cells
-const mines = []; // Array of bomb positions in (x,y) coordinates
+
 export function makeBoard(rows, cols) {
     // 2D array of divs each with an (x,y) pair
     for (let y = 0; y < rows; y++) {
@@ -24,7 +26,7 @@ export function makeBoard(rows, cols) {
         }
         board.push(rowArr);
     }
-    console.log("MINESWEEPER");
+    // console.log("MINESWEEPER");
     createMines(99, rows, cols);
     numberCells(rows, cols);
     return board;
@@ -35,7 +37,7 @@ function createMines(numMines, rows, cols) {
     for (let i = 0; i < numMines; i++) {
         let xPos = Math.floor(Math.random() * cols);
         let yPos = Math.floor(Math.random() * rows);
-        console.log(`(${xPos}, ${yPos})`);
+        // console.log(`(${xPos}, ${yPos})`);
         let curCell = board[yPos][xPos];
         if (curCell.mine == false) {
             curCell.mine = true;
@@ -44,13 +46,11 @@ function createMines(numMines, rows, cols) {
             bomb.style.width = "100%";
             bomb.style.height = "100%";
             bomb.style.display = "none";
-            bomb.style.backgroundColor = "red";
             curCell.square.append(bomb);
+            mines.push(curCell);
         } else {
             i--;
         }
-        let minePos = {x: xPos, y: xPos};
-        mines.push(minePos);
     }
 }
 
@@ -179,26 +179,32 @@ function numberCell(cell) {
     labelCell(cell);
 }
 
-export function revealCell(cell) {
-    if (cell.flagged == false) {
-        if (cell.mine == true) {
-            alert("YOU HIT A BOMB");
-        } else if (cell.status == 0) {
-            cell.square.querySelector("img").style.display = "block";
-            cell.covered = false;
-            revealNeighbors(cell);
-        } else if (cell.covered == false) {
-            checkFlagged(cell);
-        } else {
-            cell.square.querySelector("img").style.display = "block";
-            cell.covered = false;
+// ===========================================================================================================================
+
+export function revealCell(cell, int) {
+    if (gameOver == false) {
+        if (cell.flagged == false) {
+            if (cell.mine == true) {
+                clearInterval(int);
+                gameOver = true;
+                endGame();
+            } else if (cell.status == 0) {
+                cell.square.querySelector("img").style.display = "block";
+                cell.covered = false;
+                revealNeighbors(cell);
+            } else if (cell.covered == false) {
+                checkFlagged(cell);
+            } else {
+                cell.square.querySelector("img").style.display = "block";
+                cell.covered = false;
+            }
         }
-    }
+}
 }
 
-// ======================================================================================================
+// =========================================================================================================================
 
-function revealNeighbors(cell, cols, rows) {
+function revealNeighbors(cell) {
     // Guaranteed that we clicked a cell with status 0
 
     // If any adjacent cell has a status of 0 add that cell to queue and continue, 
@@ -237,10 +243,15 @@ function checkFlagged(cell) {
     let curStatus = cell.status;
     let minesFlagged = 0;
     let neighbors = [];
+    let wrongFlag = false;
 
     for (let y = -1; y <= 1; y++) {
         for (let x = -1; x <= 1; x++) {
             let curCell = board[yPos + y]?.[xPos + x];
+            if (curCell?.flagged == true && curCell.mine == false) {
+                wrongFlag = true;
+                minesFlagged++;
+            }
             if (curCell?.flagged == true && curCell.mine == true && curCell.covered == true) {
                 minesFlagged++;
             } else {
@@ -250,6 +261,10 @@ function checkFlagged(cell) {
     }
 
     if (curStatus == minesFlagged) {
+        if (wrongFlag) {
+            gameOver = true;
+            endGame();
+        }
         cell.covered = false;
         neighbors.forEach(cell => {
             if (cell) {
@@ -266,23 +281,65 @@ function checkFlagged(cell) {
 
 }
 
+function endGame() {
+    mines.forEach(cell => {
+        if (cell.flagged == true) {
+            cell.square.querySelector(".flag").remove();
+            cell.flagged = false;
+        }
+        cell.square.querySelector("img").style.display = "block";
+    });
+
+    board.forEach(row => {
+        row.forEach(cell => cell.square.removeEventListener("mousedown", (e) => {
+            e.covered = true;
+        }));
+    });
+}
+
 // ============================================================================================
 
 export function flagCell(cell) {
 
-    if (cell.covered == true) {
-        if (cell.flagged == false) {
-            let cellImg = document.createElement("img");
-            cellImg.className = "flag";
-            cellImg.src = "./images/flag.png";
-            cellImg.style.width = "100%";
-            cellImg.style.height = "100%";
-            cell.square.append(cellImg);
-            cell.flagged = true;
-        } else {
-            let curFlag = cell.square.querySelector(".flag");
-            curFlag.remove();
-            cell.flagged = false;
+    if (gameOver == false) {
+
+        if (cell.covered == true) {
+            if (cell.flagged == false) {
+                let cellImg = document.createElement("img");
+                cellImg.className = "flag";
+                cellImg.src = "./images/flag.png";
+                cellImg.style.width = "100%";
+                cellImg.style.height = "100%";
+                cell.square.append(cellImg);
+                cell.flagged = true;
+                return true;
+            } else {
+                let curFlag = cell.square.querySelector(".flag");
+                curFlag.remove();
+                cell.flagged = false;
+                return false;
+            }
         }
     }
+}
+
+export function resetBoard(rows, cols) {
+    // reset all status, mines, flagged, covered
+    for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+            let cell = board[y][x];
+            if (cell.flagged == true) {
+                cell.square.querySelector(".flag").remove();
+            }
+            cell.status = 0;
+            cell.mine = false;
+            cell.flagged = false;
+            cell.covered = true;
+            cell.square.querySelector("img").remove();
+        }
+    }
+    gameOver = false;
+    mines = [];
+    createMines(99, rows, cols);
+    numberCells(rows, cols);
 }
