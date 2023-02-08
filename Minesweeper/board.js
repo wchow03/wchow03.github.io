@@ -27,7 +27,7 @@ export function makeBoard(rows, cols) {
         board.push(rowArr);
     }
     // console.log("MINESWEEPER");
-    createMines(99, rows, cols);
+    createMines(9, rows, cols);
     numberCells(rows, cols);
     return board;
 }
@@ -185,21 +185,46 @@ export function revealCell(cell, int) {
     if (gameOver == false) {
         if (cell.flagged == false) {
             if (cell.mine == true) {
-                clearInterval(int);
                 gameOver = true;
-                endGame();
+                endGame(int);
             } else if (cell.status == 0) {
                 cell.square.querySelector("img").style.display = "block";
                 cell.covered = false;
                 revealNeighbors(cell);
             } else if (cell.covered == false) {
-                checkFlagged(cell);
+                checkFlagged(cell, int);
             } else {
                 cell.square.querySelector("img").style.display = "block";
                 cell.covered = false;
             }
         }
+    }
 }
+
+export function checkWin(cols, rows, int) {
+    let won = true;
+    for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+            let cell = board[y][x];
+            if (cell.mine == false && cell.covered == true) won = false;
+        }
+    }
+    if (won) {
+        clearInterval(int);
+        mines.forEach(cell => {
+            if (cell.flagged == false) {
+                let cellImg = document.createElement("img");
+                cellImg.className = "flag";
+                cellImg.src = "./images/flag.png";
+                cellImg.style.width = "100%";
+                cellImg.style.height = "100%";
+                cell.square.append(cellImg);
+                cell.flagged = true;
+            }
+        });
+        setInterval(alert("Congrats, You Won!"), 1000);
+        console.log("YOU WIN");
+    }
 }
 
 // =========================================================================================================================
@@ -237,7 +262,7 @@ function revealNeighbors(cell) {
     }
 }
 
-function checkFlagged(cell) {
+function checkFlagged(cell, int) {
     let xPos = cell.x;
     let yPos = cell.y;
     let curStatus = cell.status;
@@ -263,7 +288,7 @@ function checkFlagged(cell) {
     if (curStatus == minesFlagged) {
         if (wrongFlag) {
             gameOver = true;
-            endGame();
+            endGame(int);
         }
         cell.covered = false;
         neighbors.forEach(cell => {
@@ -281,7 +306,8 @@ function checkFlagged(cell) {
 
 }
 
-function endGame() {
+function endGame(int) {
+    clearInterval(int);
     mines.forEach(cell => {
         if (cell.flagged == true) {
             cell.square.querySelector(".flag").remove();
@@ -299,12 +325,11 @@ function endGame() {
 
 // ============================================================================================
 
-export function flagCell(cell) {
+export function flagCell(cell, minesLeft) {
 
     if (gameOver == false) {
-
         if (cell.covered == true) {
-            if (cell.flagged == false) {
+            if (cell.flagged == false && minesLeft > 0) {
                 let cellImg = document.createElement("img");
                 cellImg.className = "flag";
                 cellImg.src = "./images/flag.png";
@@ -312,15 +337,18 @@ export function flagCell(cell) {
                 cellImg.style.height = "100%";
                 cell.square.append(cellImg);
                 cell.flagged = true;
-                return true;
-            } else {
+                minesLeft--;
+                return minesLeft;
+            } else if (cell.flagged == true) {
                 let curFlag = cell.square.querySelector(".flag");
                 curFlag.remove();
                 cell.flagged = false;
-                return false;
+                minesLeft++;
+                return minesLeft;
             }
         }
     }
+    return minesLeft;
 }
 
 export function resetBoard(rows, cols) {
@@ -340,6 +368,6 @@ export function resetBoard(rows, cols) {
     }
     gameOver = false;
     mines = [];
-    createMines(99, rows, cols);
+    createMines(9, rows, cols);
     numberCells(rows, cols);
 }

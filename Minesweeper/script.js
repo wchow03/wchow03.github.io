@@ -1,15 +1,16 @@
-import {makeBoard, revealCell, flagCell, resetBoard} from "./board.js";
+import {makeBoard, revealCell, flagCell, resetBoard, checkWin} from "./board.js";
 
 // AFTER COMPLETING WORKING GAME MAKE IT SUCH THAT FIRST CLICK ON BOARD IS A BLANK SQUARE
 const restart = document.querySelector(".restartBtn");
 let minesRemaining = document.querySelector(".mines-remaining");
 let timeTaken = document.querySelector(".time-taken");
-let rows = 16;
-let cols = 32;
+
+let rows = 8;
+let cols = 8;
+
 let mines = 99;
 let time = 0;
 let timerStarted = false;
-let isFlagged = false;
 let board;
 let curBoard;
 let int;
@@ -53,14 +54,11 @@ function init() {
                             int = setInterval(incrTimer, 1000);
                         }
                         revealCell(cell, int);
+                        checkWin(cols, rows, int);
                         break;
                     case 2:
-                        isFlagged = flagCell(cell);
-                        if (isFlagged) {
-                            mines--;
-                        } else {
-                            mines++;
-                        }
+                        mines = flagCell(cell, mines);
+                        checkWin(cols, rows, int);
                         minesRemaining.textContent = "0"+mines;
                         break;
                 }
