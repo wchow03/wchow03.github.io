@@ -25,7 +25,7 @@ export function makeBoard(rows, cols) {
         board.push(rowArr);
     }
     console.log("MINESWEEPER");
-    createMines(40, rows, cols);
+    createMines(99, rows, cols);
     numberCells(rows, cols);
     return board;
 }
