@@ -10,7 +10,7 @@ body {
     display: inline-grid;
     grid-template-columns: repeat(var(--col), 1fr);
     grid-template-rows: repeat(var(--row), 1fr);
-    gap: 2px;
+    gap: 1px;
     background-color: grey;
     padding: 5px;
     border-radius: 5px;
