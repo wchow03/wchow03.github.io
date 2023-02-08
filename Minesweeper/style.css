@@ -2,6 +2,12 @@ body {
     background-color: #252525;
 }
 
+html {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .board {
     position: absolute;
     top: 50%;
