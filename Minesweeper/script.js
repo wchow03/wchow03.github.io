@@ -5,8 +5,8 @@ const restart = document.querySelector(".restartBtn");
 let minesRemaining = document.querySelector(".mines-remaining");
 let timeTaken = document.querySelector(".time-taken");
 
-let rows = 8;
-let cols = 8;
+let rows = 16;
+let cols = 32;
 
 let mines = 99;
 let time = 0;
