@@ -13,7 +13,6 @@ let gameOver = false;
 let board = []; // Contains a 2D array of cells
 let mines = []; // Array of bomb positions in (x,y) coordinates
 
-
 export function makeBoard(rows, cols) {
     // 2D array of divs each with an (x,y) pair
     for (let y = 0; y < rows; y++) {
@@ -26,20 +25,34 @@ export function makeBoard(rows, cols) {
         }
         board.push(rowArr);
     }
-    // console.log("MINESWEEPER");
-    createMines(99, rows, cols);
-    numberCells(rows, cols);
+    // if (cols == 8) {
+    //     createMines(9, rows, cols);
+    // } else if (cols == 16) {
+    //     createMines(40, rows, cols);
+    // } else if (cols == 32) {
+    //     createMines(99, rows, cols);
+    // }
+    // numberCells(rows, cols);
     return board;
 }
 
-function createMines(numMines, rows, cols) {
+export function createMines(numMines, rows, cols, cell) {
+    let cellX = cell.x;
+    let cellY = cell.y;
+    let firstCellAdj = [];
+    for (let y = -1; y <= 1; y++) {
+        for (let x = -1; x <= 1; x++) {
+            let curCell = board[y + cellY]?.[x + cellX];
+            firstCellAdj.push(curCell);
+        }
+    }
 
     for (let i = 0; i < numMines; i++) {
         let xPos = Math.floor(Math.random() * cols);
         let yPos = Math.floor(Math.random() * rows);
         // console.log(`(${xPos}, ${yPos})`);
         let curCell = board[yPos][xPos];
-        if (curCell.mine == false) {
+        if (curCell.mine == false && (!firstCellAdj.includes(curCell))) {
             curCell.mine = true;
             let bomb = document.createElement('img');
             bomb.src = "./images/bomb.png";
@@ -52,6 +65,7 @@ function createMines(numMines, rows, cols) {
             i--;
         }
     }
+    numberCells(rows, cols);
 }
 
 // =========================================================================================================
@@ -321,6 +335,11 @@ function endGame(int) {
             e.covered = true;
         }));
     });
+
+    let frown = document.querySelector(".restartBtn");
+    frown.style.background = "url(./images/Frown.png)";
+    frown.style.backgroundSize = "40px 40px";
+
 }
 
 // ============================================================================================
@@ -351,23 +370,8 @@ export function flagCell(cell, minesLeft) {
     return minesLeft;
 }
 
-export function resetBoard(rows, cols) {
-    // reset all status, mines, flagged, covered
-    for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < cols; x++) {
-            let cell = board[y][x];
-            if (cell.flagged == true) {
-                cell.square.querySelector(".flag").remove();
-            }
-            cell.status = 0;
-            cell.mine = false;
-            cell.flagged = false;
-            cell.covered = true;
-            cell.square.querySelector("img").remove();
-        }
-    }
-    gameOver = false;
+export function resetBoard() {
+    board = [];
     mines = [];
-    createMines(99, rows, cols);
-    numberCells(rows, cols);
+    gameOver = false;
 }
