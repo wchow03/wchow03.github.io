@@ -216,29 +216,26 @@ export function revealCell(cell, int) {
 }
 
 export function checkWin(cols, rows, int) {
-    let won = true;
     for (let y = 0; y < rows; y++) {
         for (let x = 0; x < cols; x++) {
             let cell = board[y][x];
-            if (cell.mine == false && cell.covered == true) won = false;
+            if (cell.mine == false && cell.covered == true) return false;
         }
     }
-    if (won) {
-        clearInterval(int);
-        mines.forEach(cell => {
-            if (cell.flagged == false) {
-                let cellImg = document.createElement("img");
-                cellImg.className = "flag";
-                cellImg.src = "./images/flag.png";
-                cellImg.style.width = "100%";
-                cellImg.style.height = "100%";
-                cell.square.append(cellImg);
-                cell.flagged = true;
-            }
-        });
-        setInterval(alert("Congrats, You Won!"), 1000);
-        console.log("YOU WIN");
-    }
+    clearInterval(int);
+    mines.forEach(cell => {
+        if (cell.flagged == false) {
+            let cellImg = document.createElement("img");
+            cellImg.className = "flag";
+            cellImg.src = "./images/flag.png";
+            cellImg.style.width = "100%";
+            cellImg.style.height = "100%";
+            cell.square.append(cellImg);
+            cell.flagged = true;
+        }
+    });
+    return true;
+    // setTimeout(alert("Congrats, You Won!\n Time to complete: "+time+" seconds"), 5000);
 }
 
 // =========================================================================================================================

@@ -75,6 +75,7 @@ function init() {
                         createMines(99, rows, cols, cell);
                     }
                 }
+                
                 switch (e.button) {
                     case 0:
                         if (timerStarted == false) {
@@ -82,11 +83,12 @@ function init() {
                             int = setInterval(incrTimer, 1000);
                         }
                         revealCell(cell, int);
-                        checkWin(cols, rows, int);
+                        if (checkWin(cols, rows, int, time)) {
+                            setTimeout(alert("Congrats, You Won!\n Time to complete: "+time+" seconds"), 1000);
+                        }
                         break;
                     case 2:
                         mines = flagCell(cell, mines);
-                        checkWin(cols, rows, int);
                         updateMinesLeft();
                         break;
                 }
