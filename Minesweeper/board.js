@@ -300,19 +300,20 @@ function checkFlagged(cell, int) {
         if (wrongFlag) {
             gameOver = true;
             endGame(int);
-        }
-        cell.covered = false;
-        neighbors.forEach(cell => {
-            if (cell) {
-                if (cell.status == 0) {
-                    cell.covered = false;
-                    revealNeighbors(cell);
-                } else {
-                    cell.square.querySelector("img").style.display = "block";
-                    cell.covered = false;
+        } else {
+            cell.covered = false;
+            neighbors.forEach(cell => {
+                if (cell) {
+                    if (cell.status == 0) {
+                        cell.covered = false;
+                        revealNeighbors(cell);
+                    } else {
+                        cell.square.querySelector("img").style.display = "block";
+                        cell.covered = false;
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
 }

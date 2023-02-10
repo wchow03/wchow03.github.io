@@ -65,19 +65,19 @@ function init() {
             
             cell.square.addEventListener("mousedown", e => {
                 // console.log(`(${cell.x}, ${cell.y})`);
-                if (firstClick == false) {
-                    firstClick = true;
-                    if (cols == 8) {
-                        createMines(9, rows, cols, cell);
-                    } else if (cols == 16) {
-                        createMines(40, rows, cols, cell);
-                    } else if (cols == 32) {
-                        createMines(99, rows, cols, cell);
-                    }
-                }
                 
                 switch (e.button) {
                     case 0:
+                        if (firstClick == false) {
+                            firstClick = true;
+                            if (cols == 8) {
+                                createMines(9, rows, cols, cell);
+                            } else if (cols == 16) {
+                                createMines(40, rows, cols, cell);
+                            } else if (cols == 32) {
+                                createMines(99, rows, cols, cell);
+                            }
+                        }
                         if (timerStarted == false) {
                             timerStarted = true;
                             int = setInterval(incrTimer, 1000);
@@ -88,8 +88,13 @@ function init() {
                         }
                         break;
                     case 2:
-                        mines = flagCell(cell, mines);
-                        updateMinesLeft();
+                        if (firstClick == true) {
+                            mines = flagCell(cell, mines);
+                            // if (checkWin(cols, rows, int, time)) {
+                            //     setTimeout(alert("Congrats, You Won!\n Time to complete: "+time+" seconds"), 1000);
+                            // }
+                            updateMinesLeft();
+                        }
                         break;
                 }
             });

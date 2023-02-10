@@ -2,6 +2,9 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+html {
+    scroll-padding-top: 50px;
+}
 
 /* Below is CSS for Nav and Intro Screen */
 .nav-link,
