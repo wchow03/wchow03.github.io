@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>William Chow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
@@ -52,7 +53,7 @@
       <!--About Section-->
         <section id="about">
             <div class="container mt-4">
-                <h1 class="text-center mb-5">About</h1>
+                <h1 class="text-center">About</h1>
                 <div class="row">
                     <div class="col-md-6 info hidden">
                         <span class="intro">
@@ -62,7 +63,7 @@
                         <div class="row">
                 
                             <div class="col-md-6 mt-4 education reveal-about hidden">
-                                <h3 class="text-center">Education</h3>
+                                <h3 class="text-center fw-bold">Education</h3>
                                 <p class="text-center mt-3 education-info">
                                     University of British Columbia <br> 
                                     Bachelor of Science: Computer Science
@@ -72,7 +73,7 @@
                 </div>
  
                 <div class="col-md-6 skills reveal-about hidden">
-                    <h3 class="text-center">Skills</h3>
+                    <h3 class="text-center fw-bold">Skills</h3>
                     <div class="container-fluid skill-container">
                         <div class="progressbar">
                             <span class="skill">HTML</span>
@@ -98,6 +99,11 @@
                             <span class="skill">Javascript</span>
                             <div class="progress javascript"></div>
                         </div>
+
+                        <div class="progressbar">
+                            <span class="skill">C</span>
+                            <div class="progress c"></div>
+                        </div>
                 
                         <div class="progressbar">
                             <span class="skill">Python</span>
@@ -113,46 +119,71 @@
         <section id="projects">
             <div class="container">
                 <h1 class="text-center">Projects</h1>
+
                 <div class="row">
-                    <div class="col-xl-6">
-                        <figure class="project-card">
-                            <img src="images\ColourFlipperImg.png" class="card-img" alt="Colour Flipper Image">
-                            <figcaption class="card-desc">
-                                <h3 class="text-center">Colour Flipper</h3>
-                                <p class="desc">When button is pressed, the background switches to a random colour</p>
-                                <a href="Colour Flipper/index.html" target="_blank">
-                                    <button>View</button>
-                                </a>
-                            </figcaption>
-                        </figure>
-                    </div>
-  
+
                     <div class="col-xl-6">
                         <figure class="project-card">
                             <img src="images\MinesweeperCard.png" class="card-img" alt="Minesweeper Image">
                             <figcaption class="card-desc">
                                 <h3 class="text-center">Minesweeper</h3>
-                                <p class="desc">Minesweeper game created using JavaScript</p>
+                                <p class="desc">The popular Minesweeper game build using JavaScript. The game closely resembles the original with features
+                                    such as right click to flag, chording, remaining mines, timer, and reset button.
+                                </p>
                                 <a href="Minesweeper/index.html" target="_blank">
                                     <button>View</button>
                                 </a>
                             </figcaption>
                         </figure>
                     </div>
-                    
-                </div>
-                <div class="row">
+
                     <div class="col-xl-6">
                         <figure class="project-card">
-                            <img src="images\TicTacToeCard.png" class="card-img" alt="Colour Flipper Image">
+                            <img src="images\MemoryMatchingGame.png" class="card-img" alt="Memory Matching Game Image">
+                            <figcaption class="card-desc">
+                                <h3 class="text-center">Memory Matching Game</h3>
+                                <p class="desc">Memory Matching Game made using Java</p>
+                                    <button data-bs-toggle="modal" data-bs-target="#memoryMatchingModal">View</button>
+                                </figcaption>
+                        </figure>
+                        <!-- Modal -->
+                        <div class="modal fade" id="memoryMatchingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-body">
+                                  <video width="100%" controls autoplay>
+                                    <source src="videos\MemoryMatchingGameDemo.mp4" type="video/mp4">
+                                  </video>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+
+                </div>
+
+                <div class="row project-second-row">
+                    <div class="col-xl-6">
+                        <figure class="project-card">
+                            <img src="images\WarOfWords.png" class="card-img" alt="Colour Flipper Image">
                             <figcaption class="card-desc">
                                 <h3 class="text-center">Tic Tac Toe</h3>
                                 <p class="desc">A simple Tic Tac Toe game I created while learning JavaScript</p>
-                                <a href="Tic Tac Toe/index.html" target="_blank">
-                                    <button>View</button>
-                                </a>
-                            </figcaption>
+                                    <button data-bs-toggle="modal" data-bs-target="#warOfWordsModal">View</button>
+                                </figcaption>
                         </figure>
+                          <!-- Modal -->
+                          <div class="modal fade" id="warOfWordsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-body">
+                                  <video width="100%" controls autoplay>
+                                    <source src="videos\WarOfWordsExampleVideo.mp4" type="video/mp4">
+                                  </video>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                     </div>
 
                     <div class="col-xl-6">
@@ -168,6 +199,7 @@
                         </figure>
                     </div>
                 </div>
+
             </div>
         </section>
 

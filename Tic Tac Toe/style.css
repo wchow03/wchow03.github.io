@@ -1,6 +1,15 @@
 * {
     margin: 0;
 }
+body {
+    background-color: #252525;
+}
+
+.main-text {
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-right: 20px;
+}
 
 .board {
     display: grid;
@@ -22,6 +31,7 @@
     align-items: center;
     font-size: 100px;
     font-family: monospace;
+    background-color: rgb(204, 204, 204);
 }
 
 .winner {
@@ -52,7 +62,7 @@ button {
     border-radius: 25px;
     transition: 0.3s all;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 20px;
     font-family: monospace;
 }
 
