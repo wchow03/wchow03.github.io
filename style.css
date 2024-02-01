@@ -67,6 +67,14 @@ html {
 }
 /* End CSS for Nav and Intro Screen */
 
+.projectBtn {
+    position: relative;
+    left: 40%;
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+}
+
 
 /* Below is the CSS for the progress bars*/
 
@@ -378,9 +386,14 @@ main {
 @media (hover: none) {
 
     .card-desc {
-        top: 0%;
+        top: 4%;
         opacity: 0.8;
+        text-align: center;
+    }
 
+    .projectBtn {
+        position: relative;
+        left: 0%;
     }
 
     .desc {
@@ -390,6 +403,10 @@ main {
     @media (max-width: 1199px) {
         .project-second-row {
             margin-top: 0px;
+        }
+
+        .project-card {
+            padding-top: 20px;
         }
 
         .desc {
@@ -402,6 +419,13 @@ main {
     }
 
     @media (max-width: 992px) {
+
+        .card-desc {
+            top: 4%;
+            opacity: 0.8;
+            padding-top: 200px;
+            text-align: center;
+        }
 
         .education {
             top: 50px;
@@ -417,6 +441,13 @@ main {
     }
 
     @media (max-width: 768px) {
+        .card-desc {
+            top: -65%;
+            opacity: 0.8;
+            padding-bottom: 150px;
+            text-align: center;
+        }
+
         .education {
             top: 20px;
         }
